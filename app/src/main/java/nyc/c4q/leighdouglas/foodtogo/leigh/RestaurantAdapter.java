@@ -11,10 +11,6 @@ import java.util.List;
 import nyc.c4q.leighdouglas.foodtogo.R;
 import nyc.c4q.leighdouglas.foodtogo.jon.models.Restaurant;
 
-/**
- * Created by leighdouglas on 2/18/17.
- */
-
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantViewHolder> {
     private List<Restaurant> restaurantList = new ArrayList<>();
 
