@@ -32,7 +32,6 @@ public class RestaurantListActivity extends AppCompatActivity{
         restaurantRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         RestaurantAdapter adapter = new RestaurantAdapter();
         adapter.updateList(restaurantList);
-    }
 
     @Override
     protected void onStart() {
