@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1085007597866",
+    "firebase_url": "https://foodtogo-e8afc.firebaseio.com",
+    "project_id": "foodtogo-e8afc",
+    "storage_bucket": "foodtogo-e8afc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085007597866:android:85b4f656096c810a",
+        "android_client_info": {
+          "package_name": "nyc.c4q.leighdouglas.foodtogo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085007597866-6r53324gfu2e3l3hq0h9mt9au7f2h21e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nyc.c4q.leighdouglas.foodtogo",
+            "certificate_hash": "218A2C1AA01360F1B3CC124A3F9EC10386121CD6"
+          }
+        },
+        {
+          "client_id": "1085007597866-mc97a9o9cko1ctquv0ajdu96i2886p7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj4Ff1PkcVQO1sRtdwrSktd6TWZWbuvic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085007597866-mc97a9o9cko1ctquv0ajdu96i2886p7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
