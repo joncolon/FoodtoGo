@@ -109,6 +109,7 @@ public class RestaurantProfileActivity extends AppCompatActivity {
                 !(pickupTime.getText() + "").equals("");
 
         return bool;
+    }
 
     @NonNull
     private Restaurant createRestaurantFromEditTexts() {
