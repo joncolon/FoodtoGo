@@ -80,22 +80,8 @@ public class RestaurantProfileActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Complete form before notifying", Toast.LENGTH_SHORT).show();
                 }
-
                 Restaurant restaurant = createRestaurantFromEditTexts();
                 saveRestaurant(restaurant);
-
-                //make phone notification
-              
-                pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                nCBuilder = (NotificationCompat.Builder)
-                        new NotificationCompat.Builder(notifyButton.getContext()).setContentIntent(pIntent)
-                                .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
-                                .setContentTitle("Free food at " + businessName.getText())
-                                .setContentInfo("you better say hello");
-                final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
-
-
             }
         });
     }
@@ -109,6 +95,7 @@ public class RestaurantProfileActivity extends AppCompatActivity {
                 !(pickupTime.getText() + "").equals("");
 
         return bool;
+    }
 
     @NonNull
     private Restaurant createRestaurantFromEditTexts() {
