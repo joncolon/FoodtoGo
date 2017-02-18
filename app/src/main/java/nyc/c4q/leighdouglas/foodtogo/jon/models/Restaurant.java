@@ -9,6 +9,7 @@ public class Restaurant {
     private String addressLine2;
     private String phoneNumber;
     private String pickupTime;
+    private String additionalInstructions;
     private boolean isClaimed;
 
     public String getBusinessName() {
@@ -57,5 +58,13 @@ public class Restaurant {
 
     public void setClaimed(boolean claimed) {
         isClaimed = claimed;
+    }
+
+    public void setAdditionalInstructions(String additionalInstructions) {
+        this.additionalInstructions = additionalInstructions;
+    }
+
+    public String getAdditionalInstructions() {
+        return additionalInstructions;
     }
 }

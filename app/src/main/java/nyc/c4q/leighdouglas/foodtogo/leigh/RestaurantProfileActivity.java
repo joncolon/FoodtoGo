@@ -1,10 +1,12 @@
 package nyc.c4q.leighdouglas.foodtogo.leigh;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
@@ -13,12 +15,18 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import nyc.c4q.leighdouglas.foodtogo.R;
+import nyc.c4q.leighdouglas.foodtogo.jon.models.Restaurant;
+import nyc.c4q.leighdouglas.foodtogo.jon.sqlite.RestaurantDatabaseHelper;
+
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
  * Created by leighdouglas on 2/18/17.
  */
 
 public class RestaurantProfileActivity extends AppCompatActivity {
+    private SQLiteDatabase db;
+
 
     private static final int NOTIFICATION_ID = 555;
     private EditText businessName;
@@ -58,6 +66,11 @@ public class RestaurantProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Restaurant restaurant = createRestaurantFromEditTexts();
+                saveRestaurant(restaurant);
+
+                //make phone notification
+              
                 pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 nCBuilder = (NotificationCompat.Builder)
                         new NotificationCompat.Builder(notifyButton.getContext()).setContentIntent(pIntent)
@@ -69,5 +82,23 @@ public class RestaurantProfileActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @NonNull
+    private Restaurant createRestaurantFromEditTexts() {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setBusinessName(businessName.getText().toString());
+        restaurant.setAddressLine1(addressLine1.getText().toString());
+        restaurant.setAddressLine2(addressLine2.getText().toString());
+        restaurant.setPhoneNumber(phoneNumber.getText().toString());
+        restaurant.setPickupTime(pickupTime.getText().toString());
+        restaurant.setAdditionalInstructions(additionInstructions.getText().toString());
+        return restaurant;
+    }
+
+    private void saveRestaurant(Restaurant restaurant) {
+        RestaurantDatabaseHelper dbHelper = RestaurantDatabaseHelper.getInstance(getApplicationContext());
+        db = dbHelper.getWritableDatabase();
+        cupboard().withDatabase(db).put(restaurant);
     }
 }
