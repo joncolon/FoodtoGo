@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.RestaurantActivity;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.RunnerActivity;
+import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
+import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantProfileActivity;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -40,10 +42,10 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if (picked == 1) {
                     Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
-                    Intent runner = new Intent(getApplicationContext(), RunnerActivity.class);
+                    Intent runner = new Intent(getApplicationContext(), RestaurantListActivity.class);
                     startActivity(runner);
                 } else if (picked == 2) {
-                    Intent restaurant = new Intent(getApplicationContext(), RestaurantActivity.class);
+                    Intent restaurant = new Intent(getApplicationContext(), RestaurantProfileActivity.class);
                     startActivity(restaurant);
                 }
             }
