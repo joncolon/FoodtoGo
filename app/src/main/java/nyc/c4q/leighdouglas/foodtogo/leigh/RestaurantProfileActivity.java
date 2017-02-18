@@ -11,6 +11,7 @@ import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import nyc.c4q.leighdouglas.foodtogo.R;
 
@@ -57,17 +58,32 @@ public class RestaurantProfileActivity extends AppCompatActivity {
         notifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (formIsntComplete()) {
 
-                pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                nCBuilder = (NotificationCompat.Builder)
-                        new NotificationCompat.Builder(notifyButton.getContext()).setContentIntent(pIntent)
-                                .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
-                                .setContentTitle("Free food at " + businessName.getText())
-                                .setContentInfo("you better say hello");
-                final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
+                    pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                    nCBuilder = (NotificationCompat.Builder)
+                            new NotificationCompat.Builder(notifyButton.getContext()).setContentIntent(pIntent)
+                                    .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                                    .setContentTitle("Free food at " + businessName.getText())
+                                    .setContentInfo("you better say hello");
+                    final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
+                } else {
+                    Toast.makeText(getApplicationContext(), "Complete form before notifying", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
+    }
+
+    private boolean formIsntComplete() {
+        boolean bool = !(businessName.getText() + "").equals("") &&
+                !(addressLine1.getText() + "").equals("") &&
+                !(addressLine2.getText() + "").equals("") &&
+                !(phoneNumber.getText() + "").equals("") &&
+                !(contactName.getText() + "").equals("") &&
+                !(pickupTime.getText() + "").equals("");
+
+        return bool;
     }
 }
