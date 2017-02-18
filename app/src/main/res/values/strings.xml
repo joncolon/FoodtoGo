@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Food to Go</string>
+    <string name="prompt_email">E-mail address</string>
+    <string name="prompt_password">Password</string>
 </resources>
