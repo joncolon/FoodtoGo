@@ -35,7 +35,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantViewHolder
         return restaurantList.size();
     }
 
-    public void updateList(ArrayList<Restaurant> list) {
+    public void updateList(List<Restaurant> list) {
         restaurantList.clear();
         restaurantList.addAll(list);
         notifyDataSetChanged();
