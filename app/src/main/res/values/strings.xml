@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Food to Go</string>
+    <string name="business_name">Business Name</string>
+    <string name="address_line_1">Address Line 1</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="pick_up_time">Pick-up Time</string>
+    <string name="additional_instructions">Additional Instructions</string>
+    <string name="notify_button_text">Notify</string>
 </resources>
