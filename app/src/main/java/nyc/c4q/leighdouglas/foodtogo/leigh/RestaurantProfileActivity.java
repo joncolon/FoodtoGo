@@ -3,6 +3,7 @@ package nyc.c4q.leighdouglas.foodtogo.leigh;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -33,12 +34,10 @@ public class RestaurantProfileActivity extends AppCompatActivity {
     private PendingIntent pIntent;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurantprofile);
-
         initViews();
 
     }
@@ -53,19 +52,21 @@ public class RestaurantProfileActivity extends AppCompatActivity {
         additionInstructions = (EditText) findViewById(R.id.additional_instructions);
         notifyButton = (Button) findViewById(R.id.notify_button);
         requestID = System.currentTimeMillis();
-
-        nCBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext()).setContentIntent(pIntent);
-        final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        final Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
 
         notifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                nCBuilder = (NotificationCompat.Builder)
+                        new NotificationCompat.Builder(notifyButton.getContext()).setContentIntent(pIntent)
+                                .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                                .setContentTitle("Free food at " + businessName.getText())
+                                .setContentInfo("you better say hello");
+                final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
-                /** TODO:
-                 *
-                 */
-                //save data to sqlite database
-                //make phone notification
+
             }
         });
     }
