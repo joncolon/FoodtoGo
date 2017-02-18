@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.qbusict.cupboard.QueryResultIterable;
+import nyc.c4q.leighdouglas.foodtogo.jon.models.Restaurant;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
