@@ -1,8 +1,5 @@
-package nyc.c4q.leighdouglas.foodtogo.jon.sqlite;
+package nyc.c4q.leighdouglas.foodtogo.jon.models;
 
-/**
- * Created by jonathancolon on 2/18/17.
- */
 
 public class Restaurant {
 
@@ -12,6 +9,7 @@ public class Restaurant {
     private String addressLine2;
     private String phoneNumber;
     private String pickupTime;
+    private boolean isClaimed;
 
     public String getBusinessName() {
         return businessName;
@@ -51,5 +49,13 @@ public class Restaurant {
 
     public void setPickupTime(String pickupTime) {
         this.pickupTime = pickupTime;
+    }
+
+    public boolean isClaimed() {
+        return isClaimed;
+    }
+
+    public void setClaimed(boolean claimed) {
+        isClaimed = claimed;
     }
 }

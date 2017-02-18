@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import nyc.c4q.leighdouglas.foodtogo.jon.models.Restaurant;
+
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 public class RestaurantDatabaseHelper extends SQLiteOpenHelper {
