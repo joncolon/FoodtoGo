@@ -32,6 +32,7 @@ public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
         mView = layoutinflater.inflate(R.layout.yelp_viewholder, parent, false);
         return new YelpVH(mView);
     }
+
     @Override
     public void onBindViewHolder(YelpVH holder, int position) {
         holder.setYelpData(yelpInfoList.get(position));
