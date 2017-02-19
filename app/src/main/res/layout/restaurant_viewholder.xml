@@ -6,8 +6,8 @@
     android:layout_height="150dp"
     app:cardBackgroundColor="#ffffff"
     android:layout_marginTop="5dp"
-    android:layout_marginEnd="2dp"
-    android:layout_marginStart="2dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
     app:cardCornerRadius="3dp">
 
     <RelativeLayout
@@ -28,8 +28,8 @@
             android:layout_marginTop="15dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="Restaurant name"
             android:textColor="@color/colorFont"
+            android:textStyle="bold"
             android:textSize="20sp"/>
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/restaurant_name"
             android:textColor="@color/colorFont"
-            android:text="123 Food Street"/>
+            />
 
         <TextView
             android:id="@+id/address_line2"
@@ -48,8 +48,9 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/address_line1"
             android:textColor="@color/colorFont"
-            android:text="suite #abc"
             />
+
+
 
         <TextView
             android:id="@+id/availability"
@@ -57,8 +58,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/address_line2"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/availability"
             android:textColor="@color/colorFont"
-            android:text="6pm - 10pm"/>
+            />
 
         <ImageButton
             android:id="@+id/directions"

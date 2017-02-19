@@ -1,17 +1,19 @@
 package nyc.c4q.leighdouglas.foodtogo.leigh;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,10 +28,10 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
  */
 
 public class RestaurantProfileActivity extends AppCompatActivity {
-    private SQLiteDatabase db;
-
-
     private static final int NOTIFICATION_ID = 555;
+    long requestID;
+    private SQLiteDatabase db;
+    private FloatingActionButton addRestaurantButton;
     private EditText businessName;
     private EditText addressLine1;
     private EditText addressLine2;
@@ -37,18 +39,17 @@ public class RestaurantProfileActivity extends AppCompatActivity {
     private EditText contactName;
     private EditText pickupTime;
     private EditText additionInstructions;
-    private Button notifyButton;
     private NotificationCompat.Builder nCBuilder;
-    long requestID;
     private PendingIntent pIntent;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurantprofile);
         initViews();
+        initUpSubmitButton();
 
+        addRestaurantButton.setVisibility(View.GONE);
     }
 
     private void initViews() {
@@ -59,34 +60,51 @@ public class RestaurantProfileActivity extends AppCompatActivity {
         contactName = (EditText) findViewById(R.id.contact_name);
         pickupTime = (EditText) findViewById(R.id.pick_up_time);
         additionInstructions = (EditText) findViewById(R.id.additional_instructions);
-        notifyButton = (Button) findViewById(R.id.notify_button);
-        requestID = System.currentTimeMillis();
-        final Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
+        additionInstructions.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                addRestaurantButton.setVisibility(View.GONE);
+            }
 
-        notifyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                addRestaurantButton.setVisibility(View.VISIBLE);
+            }
+        });
+        addRestaurantButton = (FloatingActionButton) findViewById(R.id.fab_add_restaurant);
+
+        requestID = System.currentTimeMillis();
+    }
+
+    private void initUpSubmitButton() {
+        addRestaurantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (formIsntComplete()) {
 
+                final Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
+                pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                nCBuilder = (NotificationCompat.Builder)
+                        new NotificationCompat.Builder(addRestaurantButton.getContext()).setContentIntent(pIntent)
+                                .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                                .setContentTitle("Free food at " + businessName.getText())
+                                .setContentInfo("you better say hello");
+                final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
 
-                    pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                    nCBuilder = (NotificationCompat.Builder)
-                            new NotificationCompat.Builder(notifyButton.getContext()).setContentIntent(pIntent)
-                                    .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
-                                    .setContentTitle("Free food at " + businessName.getText())
-                                    .setContentInfo("pick up item by ");
-                    final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
-                } else {
-                    Toast.makeText(getApplicationContext(), "Complete form before notifying", Toast.LENGTH_SHORT).show();
-                }
                 Restaurant restaurant = createRestaurantFromEditTexts();
                 saveRestaurant(restaurant);
+
+                Toast.makeText(RestaurantProfileActivity.this, "Post successful!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private boolean formIsntComplete() {
+    private boolean isFormComplete() {
         boolean bool = !(businessName.getText() + "").equals("") &&
                 !(addressLine1.getText() + "").equals("") &&
                 !(addressLine2.getText() + "").equals("") &&
@@ -113,6 +131,6 @@ public class RestaurantProfileActivity extends AppCompatActivity {
         RestaurantDatabaseHelper dbHelper = RestaurantDatabaseHelper.getInstance(getApplicationContext());
         db = dbHelper.getWritableDatabase();
         cupboard().withDatabase(db).put(restaurant);
-
     }
+
 }
