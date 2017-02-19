@@ -19,9 +19,8 @@
     <string name="confirm_email">Confirm email</string>
     <string name="enter_password">Enter password</string>
     <string name="confirm_password">Confirm password</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Sign up</string>
     <string name="enter_new_password">enter new password</string>
-    <string name="enter_email">Enter Email</string>
-
+    <string name="enter_username">enter username</string>
 
 </resources>
