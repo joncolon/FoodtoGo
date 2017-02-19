@@ -1,24 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<EditText
-    android:hint="@string/enter_email"
-    android:inputType="textEmailAddress"
-    android:id="@+id/user_email"
+
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FOOD TO GO\nsign up"
+        android:textSize="30dp"
+        android:gravity="center"/>
 
     <EditText
-        android:id="@+id/enter_password"
-        android:inputType="textPassword"
+        android:id="@+id/name_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_new_password"/>
+        android:hint="@string/enter_name"/>
 
-    <Button
-        android:id="@+id/signup_bttn"
+    <EditText
+        android:id="@+id/username_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up"/>
+        android:hint="@string/enter_username"/>
+
+    <EditText
+        android:id="@+id/email_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_email"/>
+
+    <EditText
+        android:id="@+id/confirm_email_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confirm_email"/>
+
+    <EditText
+        android:id="@+id/password_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_password"/>
+
+    <EditText
+        android:id="@+id/confirm_password_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confirm_password"/>
+    <Button
+        android:id="@+id/sign_up_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="signup"/>
+
+
 </LinearLayout>
