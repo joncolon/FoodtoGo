@@ -1,4 +1,4 @@
-package nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp;
+package nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -6,9 +6,7 @@ import android.util.Log;
 import java.io.IOException;
 import java.util.List;
 
-import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpHomelessShelters;
-import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpResponse;
-import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpService;
+import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.YelpAdapter;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +31,7 @@ public class YelpSource {
     public static final String TOKEN_SECRET = "11k2DR0quF27g2Wl6jzp_Qt2NiI";
 
 
-    public static void getHomelessList(final RecyclerView mDropOffRecycler) {
+    public static void getHomelessList(final RecyclerView mDropRecycler) {
 
         OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
         consumer.setTokenWithSecret(TOKEN, TOKEN_SECRET);
@@ -61,8 +59,7 @@ public class YelpSource {
                         Log.d("Retrofit:", "success");
                         yelpResponse = response.body();
                         yelpHomelessList = yelpResponse.getBusinesses();
-                        Log.d("YelpSOURCE",yelpResponse.getBusinesses().toString());
-                        mDropOffRecycler.setAdapter(new YelpAdapter(yelpHomelessList));
+                        mDropRecycler.setAdapter(new YelpAdapter(yelpHomelessList));
 
                     } else {
                         Log.d("Retrofit:", "Error" + response.errorBody().string());
@@ -74,6 +71,7 @@ public class YelpSource {
 
             @Override
             public void onFailure(Call<YelpResponse> call, Throwable t) {
+                System.exit(1);
                 new Throwable("YELPSOURCE FAILED");
             }
         });
