@@ -1,58 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="30dp">
 
-
-    <EditText
-        android:id="@+id/email_ET"
+    <android.support.v7.widget.CardView
+        android:id="@+id/login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorFont"
-        android:maxLines="1"/>
+        android:layout_height="175dp"
+        android:layout_marginTop="160dp"
+        android:layout_alignParentTop="true"
+        >
 
-    <EditText
-        android:id="@+id/password_ET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/prompt_password"
-        android:inputType="textPassword"
-        android:textColor="@color/colorFont"
-        android:maxLines="1"/>
-
-    <RadioGroup
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:id="@+id/runnerRadio_Btn"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="Runner"/>
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
-        <RadioButton
-            android:id="@+id/restaurantRadio_Btn"
-            android:layout_width="match_parent"
+
+            <EditText
+                android:id="@+id/email_ET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorFont"
+                android:maxLines="1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:id="@+id/password_ET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorFont"
+                android:maxLines="1"
+                android:layout_below="@id/email_ET"/>
+        </RelativeLayout>
+
+
+        <RadioGroup
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="Restaurant"/>
-    </RadioGroup>
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/runnerRadio_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="Runner"/>
+
+            <RadioButton
+                android:id="@+id/restaurantRadio_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="Restaurant"
+                />
+        </RadioGroup>
+
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/next_Btn"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorBackground"
         android:layout_gravity="center_horizontal"
-        android:text="Next"/>
+        android:text="Submit"
+        android:layout_below="@id/login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"/>
 
-</LinearLayout>
+</RelativeLayout>
