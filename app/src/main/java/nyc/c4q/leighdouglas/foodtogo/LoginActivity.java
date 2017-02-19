@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.RestaurantActivity;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.RunnerActivity;
@@ -39,7 +38,6 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (picked == 1) {
-                    Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
                     Intent runner = new Intent(getApplicationContext(), RunnerActivity.class);
                     startActivity(runner);
                 } else if (picked == 2) {
@@ -56,7 +54,6 @@ public class LoginActivity extends AppCompatActivity{
             case R.id.runnerRadio_Btn:
                 if (checked)
                     picked = 1;
-                Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
                 break;
             case R.id.restaurantRadio_Btn:
                 if (checked)
