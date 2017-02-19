@@ -38,7 +38,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
         phoneTV = (TextView) itemView.findViewById(R.id.phoneNumber);
         pickupTV = (TextView) itemView.findViewById(R.id.availability);
         claimIB = (ImageButton) itemView.findViewById(R.id.claim);
-        mapIB = (ImageButton)itemView.findViewById(R.id.directions);
+        mapIB = (ImageButton) itemView.findViewById(R.id.directions);
     }
 
     public void bind(final Restaurant restaurant) {
@@ -67,22 +67,31 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
                 restaurant.setClaimed(true);
 
                 Intent intent = new Intent(v.getContext(), DropOffListActivity.class);
-                intent.putExtra("Claimed", 1);
+                intent.putExtra(RestaurantExtras.CLAIMED, 1);
+                intent.putExtra(RestaurantExtras.BUSINESS_NAME, restaurant.getBusinessName());
+                intent.putExtra(RestaurantExtras.ADDRESS1, restaurant.getAddressLine1());
+                intent.putExtra(RestaurantExtras.ADDRESS2, restaurant.getAddressLine2());
+                intent.putExtra(RestaurantExtras.TIME, restaurant.getPickupTime());
+                intent.putExtra(RestaurantExtras.PHONE, restaurant.getPhoneNumber());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 v.getContext().startActivity(intent);
-
             }
-          
-        mapIB.setOnClickListener(v -> {
-            Log.d("view holder", "onClick: " + "should start intent");
-
-            Activity parentActivity =((Activity)v.getContext());
-
-            String uri = "http://maps.google.com/maps?daddr=" + restaurant.getAddressLine1();
-            Intent intent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(uri));
-            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-            parentActivity.startActivity(intent);
         });
 
+        mapIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("view holder", "onClick: " + "should start intent");
+
+                //Activity parentActivity = ((Activity) view.getContext());
+
+                String uri = "http://maps.google.com/maps?daddr=" + restaurant.getAddressLine1();
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(uri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 }
