@@ -27,14 +27,12 @@ public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
     @Override
     public YelpVH onCreateViewHolder(ViewGroup parent, int viewType) {
         layoutinflater = LayoutInflater.from(parent.getContext());
-        mView = layoutinflater.inflate(R.layout.yelp_container, parent, false);
+        mView = layoutinflater.inflate(R.layout.yelp_viewholder, parent, false);
         return new YelpVH(mView);
     }
-
     @Override
     public void onBindViewHolder(YelpVH holder, int position) {
-        YelpHomelessShelters yhs = yelpInfoList.get(position);
-        holder.textView.setText(yhs.getName());
+        holder.setYelpData(yelpInfoList.get(position));
     }
 
     @Override

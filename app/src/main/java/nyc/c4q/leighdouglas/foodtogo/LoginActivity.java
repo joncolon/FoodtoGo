@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (picked == 1) {
-                    Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
                     Intent runner = new Intent(getApplicationContext(), RunnerActivity.class);
                     startActivity(runner);
                 } else if (picked == 2) {
