@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.leighdouglas.foodtogo.R;
@@ -16,7 +17,7 @@ import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpHomelessShelters;
 
 public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
 
-    private List<YelpHomelessShelters> yelpInfoList;
+    private List<YelpHomelessShelters> yelpInfoList = new ArrayList<>();
     private LayoutInflater layoutinflater;
     private View mView;
 
@@ -30,6 +31,7 @@ public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
         mView = layoutinflater.inflate(R.layout.yelp_viewholder, parent, false);
         return new YelpVH(mView);
     }
+
     @Override
     public void onBindViewHolder(YelpVH holder, int position) {
         holder.setYelpData(yelpInfoList.get(position));
