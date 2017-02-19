@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 
 import nyc.c4q.leighdouglas.foodtogo.R;
-import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.YelpSource;
+import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpSource;
 
 /**
  * Created by Hyun on 2/18/17.
@@ -26,14 +26,16 @@ public class DropOffListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dropoff);
 
-        optOutBttn = (Button) findViewById(R.id.opt_out);
-
         mDropOffRecycler = (RecyclerView) findViewById(R.id.drop_off_recyclerview);
         mDropOffRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         YelpSource.getHomelessList(mDropOffRecycler);
 
-        optOutBttn.setOnClickListener(view -> {
-            int NOTIFICATION_ID = 555;
+
+        optOutBttn = (Button) findViewById(R.id.opt_out);
+        optOutBttn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int NOTIFICATION_ID = 555;
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
                     .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
@@ -48,5 +50,6 @@ public class DropOffListActivity extends AppCompatActivity {
         });
 
     }
+
 
 }
