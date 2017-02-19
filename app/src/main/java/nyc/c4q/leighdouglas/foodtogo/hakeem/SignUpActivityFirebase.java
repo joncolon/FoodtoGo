@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,12 +32,12 @@ public class SignUpActivityFirebase extends AppCompatActivity {
     EditText passwordConfirm;
     EditText email;
     EditText emailConfirm;
-    Button
+    Button signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
         mAuthListenerSUA = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -57,33 +58,62 @@ public class SignUpActivityFirebase extends AppCompatActivity {
         passwordConfirm = (EditText) findViewById(R.id.confirm_password_signup);
         email = (EditText) findViewById(R.id.email_signup);
         emailConfirm = (EditText) findViewById(R.id.confirm_email_signup);
+        signUpButton = (Button) findViewById(R.id.sign_up_button);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isFormComplete()) {
+                    createAccount(email.getText().toString(), password.getText().toString());
+                } else {
+                    Toast.makeText(getApplicationContext(), "enter usermame password and email", Toast.LENGTH_SHORT);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListenerSUA);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListenerSUA != null) {
+            mAuth.removeAuthStateListener(mAuthListenerSUA);
+        }
     }
 
     private void createAccount(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                       // Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }else{
-                            Intent intent = new Intent(getApplicationContext(), LoginActivityFirebase.class);
-                            startActivity(intent);
+        if ((email + "").equals("") || (password + "").equals("")) {
+            Toast.makeText(getApplicationContext(), "enter username and password", Toast.LENGTH_SHORT);
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+                            if (!task.isSuccessful()) {
+                                Log.d(TAG, "onComplete: " + task.getException().getMessage());
+                                Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), LoginActivityFirebase.class);
+                                startActivity(intent);
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     private boolean isFormComplete() {
-        boolean bool = (userName.getText().toString() + "").equals("") ||
-                (name.getText().toString() + "").equals("") ||
-                (emailConfirm.getText().toString() + "").equals("") ||
-                (email.getText().toString() + "").equals("") ||
-                (password.getText().toString() + "").equals("") ||
-                (passwordConfirm.getText().toString() + "").equals("");
+        boolean bool = !(userName.getText().toString() + "").equals("") &&
+                !(name.getText().toString() + "").equals("") &&
+                !(emailConfirm.getText().toString() + "").equals("") &&
+                !(email.getText().toString() + "").equals("") &&
+                !(password.getText().toString() + "").equals("") &&
+                !(passwordConfirm.getText().toString() + "").equals("");
         return bool;
     }
 }

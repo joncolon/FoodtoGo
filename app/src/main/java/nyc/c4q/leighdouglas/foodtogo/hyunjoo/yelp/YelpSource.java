@@ -22,7 +22,7 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor;
  * Created by Hyun on 2/18/17.
  */
 
-public class YelpSource{
+public class YelpSource {
 
     private static List<YelpHomelessShelters> yelpHomelessList;
     private static YelpResponse yelpResponse;
@@ -33,7 +33,7 @@ public class YelpSource{
     public static final String TOKEN_SECRET = "11k2DR0quF27g2Wl6jzp_Qt2NiI";
 
 
-    public static void getHomelessList(final RecyclerView mRecycler) {
+    public static void getHomelessList(final RecyclerView mDropOffRecycler) {
 
         OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
         consumer.setTokenWithSecret(TOKEN, TOKEN_SECRET);
@@ -61,7 +61,8 @@ public class YelpSource{
                         Log.d("Retrofit:", "success");
                         yelpResponse = response.body();
                         yelpHomelessList = yelpResponse.getBusinesses();
-                        mRecycler.setAdapter(new YelpAdapter(yelpHomelessList));
+                        Log.d("YelpSOURCE",yelpResponse.getBusinesses().toString());
+                        mDropOffRecycler.setAdapter(new YelpAdapter(yelpHomelessList));
 
                     } else {
                         Log.d("Retrofit:", "Error" + response.errorBody().string());

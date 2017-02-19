@@ -102,7 +102,7 @@ public class LoginActivityFirebase extends AppCompatActivity {
 
     private void signin(String email, String password) {
         if ((email + "").equals("") || (password + "").equals("")) {
-            Toast.makeText(getApplicationContext(), "enter username and password", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "enter username and password", Toast.LENGTH_SHORT).show();
         } else {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

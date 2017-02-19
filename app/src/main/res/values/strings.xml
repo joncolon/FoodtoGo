@@ -22,6 +22,6 @@
     <string name="sign_up">Sign up</string>
     <string name="enter_new_password">enter new password</string>
     <string name="enter_username">enter username</string>
-
+    <string name="opt_out">Opt-Out</string>
 
 </resources>

@@ -2,6 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
+    android:gravity="center_vertical"
     android:orientation="vertical">
+
+    <Button
+        android:id="@+id/dropoff_btn"
+        android:text="DROP OFF"
+        android:onClick="runnerButtons"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <Button
+        android:id="@+id/pickup_btn"
+        android:text="PICK UP"
+        android:onClick="runnerButtons"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
 
 </LinearLayout>
