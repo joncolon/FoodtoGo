@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
-import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
+import nyc.c4q.leighdouglas.foodtogo.hyunjoo.RunnerActivity;
 import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantProfileActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+
         runnerRadioBtn = (RadioButton) findViewById(R.id.runnerRadio_Btn);
         restaurantRadioBtn = (RadioButton) findViewById(R.id.restaurantRadio_Btn);
         nextBtn = (Button) findViewById(R.id.next_Btn);
@@ -34,9 +34,10 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
                 if (picked == 1) {
                     Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
-                    Intent runner = new Intent(getApplicationContext(), RestaurantListActivity.class);
+                    Intent runner = new Intent(getApplicationContext(), RunnerActivity.class);
                     startActivity(runner);
                 } else if (picked == 2) {
                     Intent restaurant = new Intent(getApplicationContext(), RestaurantProfileActivity.class);

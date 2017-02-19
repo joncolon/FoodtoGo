@@ -13,11 +13,15 @@
     <string name="facebook_application_id" translatable="false">APP_ID</string>
     <!-- Facebook Application ID, prefixed by 'fb'.  Enables Chrome Custom tabs. -->
     <string name="facebook_login_protocol_scheme" translatable="false">fbAPP_ID</string>
-    <string name="enter_username">Enter Uesrname</string>
+
     <string name="enter_name">Enter name</string>
     <string name="enter_email">Enter email</string>
     <string name="confirm_email">Confirm email</string>
     <string name="enter_password">Enter password</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_new_password">enter new password</string>
+    <string name="enter_email">Enter Email</string>
+
 
 </resources>
