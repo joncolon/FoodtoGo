@@ -68,8 +68,8 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
                 intent.putExtra(RestaurantExtras.PHONE, restaurant.getPhoneNumber());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 v.getContext().startActivity(intent);
-            }
-        });
+            });
+
 
         mapIB.setOnClickListener(new View.OnClickListener() {
             @Override
