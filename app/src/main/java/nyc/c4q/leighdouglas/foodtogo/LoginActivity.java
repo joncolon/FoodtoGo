@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -73,12 +72,14 @@ public class LoginActivity extends AppCompatActivity {
         restaurantRadioBtn = (RadioButton) findViewById(R.id.restaurantRadio_Btn);
         nextBtn = (Button) findViewById(R.id.next_Btn);
         nextBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
                 signin(emailET.getText().toString(), passwordET.getText().toString());
 
             }
+
         });
     }
 
@@ -88,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.runnerRadio_Btn:
                 if (checked)
                     picked = 1;
-                Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
                 break;
             case R.id.restaurantRadio_Btn:
                 if (checked)

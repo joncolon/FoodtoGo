@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="30dp">
@@ -13,7 +15,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
-        android:maxLines="1" />
+        android:textColor="@color/colorFont"
+        android:maxLines="1"/>
 
     <EditText
         android:id="@+id/password_ET"
@@ -21,7 +24,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/prompt_password"
         android:inputType="textPassword"
-        android:maxLines="1" />
+        android:textColor="@color/colorFont"
+        android:maxLines="1"/>
 
     <RadioGroup
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,14 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Runner" />
+            android:text="Runner"/>
 
         <RadioButton
             android:id="@+id/restaurantRadio_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Restaurant" />
+            android:text="Restaurant"/>
     </RadioGroup>
 
     <Button
@@ -49,6 +53,6 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:text="Next" />
+        android:text="Next"/>
 
 </LinearLayout>

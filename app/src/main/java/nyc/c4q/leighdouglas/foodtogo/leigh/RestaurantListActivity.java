@@ -32,6 +32,7 @@ public class RestaurantListActivity extends AppCompatActivity{
         restaurantRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         RestaurantAdapter adapter = new RestaurantAdapter();
         restaurantRV.setAdapter(adapter);
+
     }
 
     @Override
@@ -45,6 +46,7 @@ public class RestaurantListActivity extends AppCompatActivity{
         db = dbHelper.getWritableDatabase();
         restaurantList = SqlHelper.selectAllRestaurants(db);
         RestaurantAdapter adapter = new RestaurantAdapter();
+        restaurantRV.setAdapter(adapter);
         adapter.updateList(restaurantList);
     }
 }
