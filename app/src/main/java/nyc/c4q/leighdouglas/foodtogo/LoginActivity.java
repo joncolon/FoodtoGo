@@ -31,10 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         restaurantRadioBtn = (RadioButton) findViewById(R.id.restaurantRadio_Btn);
         nextBtn = (Button) findViewById(R.id.next_Btn);
         nextBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 if (picked == 1) {
                     Intent runner = new Intent(getApplicationContext(), RunnerActivity.class);
                     startActivity(runner);

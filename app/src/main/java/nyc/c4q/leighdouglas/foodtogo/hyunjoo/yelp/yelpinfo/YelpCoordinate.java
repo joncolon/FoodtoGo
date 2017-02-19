@@ -4,7 +4,7 @@ package nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo;
  * Created by Hyun on 2/18/17.
  */
 
-public class YelpCoordinates {
+public class YelpCoordinate {
 
     private String latitude;
     private String longitude;
