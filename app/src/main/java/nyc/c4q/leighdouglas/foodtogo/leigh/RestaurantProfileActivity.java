@@ -74,7 +74,7 @@ public class RestaurantProfileActivity extends AppCompatActivity {
                             new NotificationCompat.Builder(notifyButton.getContext()).setContentIntent(pIntent)
                                     .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
                                     .setContentTitle("Free food at " + businessName.getText())
-                                    .setContentInfo("you better say hello");
+                                    .setContentInfo("pick up item by ");
                     final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
                 } else {

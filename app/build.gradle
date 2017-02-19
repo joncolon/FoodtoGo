@@ -36,6 +36,12 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
+allprojects {
+    repositories {
+
+        maven { url 'https://maven.fabric.io/public' }
+    }
+}
 
 
 apply plugin: 'com.google.gms.google-services'

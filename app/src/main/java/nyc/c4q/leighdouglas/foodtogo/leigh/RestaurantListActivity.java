@@ -30,6 +30,9 @@ public class RestaurantListActivity extends AppCompatActivity{
         setContentView(R.layout.restaurant_list);
         restaurantRV = (RecyclerView) findViewById(R.id.restaurant_recyclerview);
         restaurantRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        RestaurantAdapter adapter = new RestaurantAdapter();
+        restaurantRV.setAdapter(adapter);
+
     }
 
     @Override
