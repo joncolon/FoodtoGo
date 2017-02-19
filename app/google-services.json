@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1085007597866-0orohle6qkou8hv1aea0sip752i3fhdg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nyc.c4q.leighdouglas.foodtogo",
+            "certificate_hash": "84D4D19AB8249456563DC9B36B295CA40F50EF62"
+          }
+        },
+        {
           "client_id": "1085007597866-6r53324gfu2e3l3hq0h9mt9au7f2h21e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -85,6 +85,7 @@ public class RestaurantProfileActivity extends AppCompatActivity {
         addRestaurantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 final Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
                 pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 nCBuilder = (NotificationCompat.Builder)
