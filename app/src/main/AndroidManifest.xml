@@ -19,6 +19,7 @@
 
         <activity android:name=".leigh.RestaurantListActivity"></activity>
         <activity android:name=".leigh.RestaurantProfileActivity"></activity>
+
     </application>
 
 </manifest>
