@@ -1,6 +1,10 @@
 package nyc.c4q.leighdouglas.foodtogo.leigh;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -23,6 +27,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
         address2TV = (TextView)itemView.findViewById(R.id.address_line2);
         phoneTV = (TextView)itemView.findViewById(R.id.phoneNumber);
         pickupTV = (TextView)itemView.findViewById(R.id.availability);
+        mapIB = (ImageButton)itemView.findViewById(R.id.directions);
     }
 
     public void bind(final Restaurant restaurant){
@@ -32,11 +37,16 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
         phoneTV.setText(restaurant.getPhoneNumber());
         pickupTV.setText(restaurant.getPickupTime());
 
-        claimIB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onRestaurantClicked(restaurant);
-            }
+        mapIB.setOnClickListener(v -> {
+            Log.d("view holder", "onClick: " + "should start intent");
+
+            Activity parentActivity =((Activity)v.getContext());
+
+            String uri = "http://maps.google.com/maps?daddr=" + restaurant.getAddressLine1();
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(uri));
+            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+            parentActivity.startActivity(intent);
         });
 
     }

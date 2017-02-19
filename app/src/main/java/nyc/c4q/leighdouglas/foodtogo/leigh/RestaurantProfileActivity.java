@@ -82,25 +82,22 @@ public class RestaurantProfileActivity extends AppCompatActivity {
     }
 
     private void initUpSubmitButton() {
-        addRestaurantButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        addRestaurantButton.setOnClickListener(view -> {
 
-                final Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
-                pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                nCBuilder = (NotificationCompat.Builder)
-                        new NotificationCompat.Builder(addRestaurantButton.getContext()).setContentIntent(pIntent)
-                                .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
-                                .setContentTitle("Free food at " + businessName.getText())
-                                .setContentInfo("you better say hello");
-                final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
+            final Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
+            pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            nCBuilder = (NotificationCompat.Builder)
+                    new NotificationCompat.Builder(addRestaurantButton.getContext()).setContentIntent(pIntent)
+                            .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                            .setContentTitle("Free food at " + businessName.getText())
+                            .setContentInfo("you better say hello");
+            final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
 
-                Restaurant restaurant = createRestaurantFromEditTexts();
-                saveRestaurant(restaurant);
+            Restaurant restaurant = createRestaurantFromEditTexts();
+            saveRestaurant(restaurant);
 
-                Toast.makeText(RestaurantProfileActivity.this, "Post successful!", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(RestaurantProfileActivity.this, "Post successful!", Toast.LENGTH_SHORT).show();
         });
     }
 
