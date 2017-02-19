@@ -22,7 +22,9 @@ public class SqlHelper {
         try {
             QueryResultIterable<Restaurant> itr = cupboard().withDatabase(db).query(Restaurant.class).query();
             for (Restaurant restaurant : itr) {
-                restaurants.add(restaurant);
+                if (restaurant.isClaimed() == false) {
+                    restaurants.add(restaurant);
+                }
             }
             itr.close();
         } catch (Exception e) {

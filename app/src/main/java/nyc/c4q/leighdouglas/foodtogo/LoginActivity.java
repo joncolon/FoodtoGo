@@ -11,6 +11,8 @@ import android.widget.RadioButton;
 
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.RestaurantActivity;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.RunnerActivity;
+import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
+import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantProfileActivity;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -35,16 +37,12 @@ public class LoginActivity extends AppCompatActivity{
         restaurantRadioBtn = (RadioButton) findViewById(R.id.restaurantRadio_Btn);
         nextBtn = (Button) findViewById(R.id.next_Btn);
         nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (picked == 1) {
-                    Intent runner = new Intent(getApplicationContext(), RunnerActivity.class);
-                    startActivity(runner);
-                } else if (picked == 2) {
-                    Intent restaurant = new Intent(getApplicationContext(), RestaurantActivity.class);
-                    startActivity(restaurant);
-                }
-            }
+           
+          
+          
+          
+          
+          
         });
     }
 

@@ -4,6 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="150dp"
+    app:cardBackgroundColor="#ffffff"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginStart="2dp"
     app:cardCornerRadius="3dp">
 
     <RelativeLayout
@@ -25,6 +29,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:text="Restaurant name"
+            android:textColor="@color/colorFont"
             android:textSize="20sp"/>
 
         <TextView
@@ -33,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/restaurant_name"
+            android:textColor="@color/colorFont"
             android:text="123 Food Street"/>
 
         <TextView
@@ -41,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/address_line1"
+            android:textColor="@color/colorFont"
             android:text="suite #abc"
             />
 
@@ -50,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/address_line2"
+            android:textColor="@color/colorFont"
             android:text="6pm - 10pm"/>
 
         <ImageButton
