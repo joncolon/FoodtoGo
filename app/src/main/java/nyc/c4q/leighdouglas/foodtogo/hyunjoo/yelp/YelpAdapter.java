@@ -23,6 +23,7 @@ public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
 
     public YelpAdapter(List<YelpHomelessShelters> yelpHomelessList) {
         yelpInfoList = yelpHomelessList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -41,4 +42,5 @@ public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
     public int getItemCount() {
         return yelpInfoList.size();
     }
+
 }

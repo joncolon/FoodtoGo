@@ -12,5 +12,5 @@ public interface YelpService {
 
     @GET("v2/search/")
     Call<YelpResponse> getYelp(@Query("location") String location,
-                           @Query("category_filter") String filter);
+                               @Query("category_filter") String filter);
 }
