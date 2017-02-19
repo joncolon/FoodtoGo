@@ -23,7 +23,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantViewHolder
     @Override
     public void onBindViewHolder(RestaurantViewHolder holder, int position) {
         Restaurant restaurant = restaurantList.get(position);
-
         holder.bind(restaurant);
     }
 
@@ -36,5 +35,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantViewHolder
         restaurantList.clear();
         restaurantList.addAll(list);
         notifyDataSetChanged();
+    }
+
+    public interface Listener {
+        void onRestaurantClicked(Restaurant restaurant);
+
     }
 }

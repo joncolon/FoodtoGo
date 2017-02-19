@@ -18,7 +18,7 @@ import nyc.c4q.leighdouglas.foodtogo.jon.sqlite.SqlHelper;
  * Created by leighdouglas on 2/18/17.
  */
 
-public class RestaurantListActivity extends AppCompatActivity{
+public class RestaurantListActivity extends AppCompatActivity implements RestaurantAdapter.Listener{
     private RecyclerView restaurantRV;
     private List<Restaurant> restaurantList;
     private SQLiteDatabase db;
@@ -48,5 +48,10 @@ public class RestaurantListActivity extends AppCompatActivity{
         RestaurantAdapter adapter = new RestaurantAdapter();
         restaurantRV.setAdapter(adapter);
         adapter.updateList(restaurantList);
+    }
+
+    @Override
+    public void onRestaurantClicked(Restaurant restaurant) {
+
     }
 }
