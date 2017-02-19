@@ -30,9 +30,7 @@ public class RestaurantListActivity extends AppCompatActivity{
         setContentView(R.layout.restaurant_list);
         restaurantRV = (RecyclerView) findViewById(R.id.restaurant_recyclerview);
         restaurantRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        RestaurantAdapter adapter = new RestaurantAdapter();
-        restaurantRV.setAdapter(adapter);
-        adapter.updateList(restaurantList);
+    }
 
     @Override
     protected void onStart() {
@@ -45,6 +43,7 @@ public class RestaurantListActivity extends AppCompatActivity{
         db = dbHelper.getWritableDatabase();
         restaurantList = SqlHelper.selectAllRestaurants(db);
         RestaurantAdapter adapter = new RestaurantAdapter();
+        restaurantRV.setAdapter(adapter);
         adapter.updateList(restaurantList);
     }
 }
