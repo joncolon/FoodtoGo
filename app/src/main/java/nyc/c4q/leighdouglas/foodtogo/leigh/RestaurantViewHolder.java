@@ -1,6 +1,5 @@
 package nyc.c4q.leighdouglas.foodtogo.leigh;
 
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
