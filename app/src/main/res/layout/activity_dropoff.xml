@@ -1,22 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/claimed_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:cardBackgroundColor="@color/colorPrimary"
+        android:padding="5dp"
+        app:cardCornerRadius="4dp">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameOfBusiness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Business Name"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/address1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameOfBusiness"
+                android:hint="Business Address"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/address2"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/address1"
+                android:hint="Business Address Line 2"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/claimedPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/address2"
+                android:hint="Phone"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/claimedtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/claimedPhone"
+                android:hint="Time"
+                android:textSize="18dp" />
+
+            <ImageButton
+                android:id="@+id/claimed_directions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/claimedtime"
+                android:src="@android:drawable/ic_menu_directions"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/opt_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/claimedtime"
+                android:text="@string/opt_out" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_above="@id/claimed_restaurant"
         android:id="@+id/drop_off_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/opt_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/opt_out" />
-
+        android:layout_height="match_parent" />
 </RelativeLayout>
