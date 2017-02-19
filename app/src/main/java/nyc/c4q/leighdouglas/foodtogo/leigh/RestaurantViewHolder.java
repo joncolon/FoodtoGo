@@ -1,13 +1,11 @@
 package nyc.c4q.leighdouglas.foodtogo.leigh;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -48,23 +46,18 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
         phoneTV.setText(restaurant.getPhoneNumber());
         pickupTV.setText(restaurant.getPickupTime());
 
-        claimIB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                int NOTIFICATION_ID = 555;
+        claimIB.setOnClickListener(v -> {
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(claimIB.getContext())
-                        .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
-                        .setContentTitle("New Notification")
-                        .setContentText("A user has claimed food!");
+            int NOTIFICATION_ID = 555;
 
-                // Get the notification manager system service
-                NotificationManager notificationManager = (NotificationManager) v.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(claimIB.getContext())
+                    .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                    .setContentTitle("New Notification")
+                    .setContentText("A user has claimed food!");
 
-                // Setting a notification ID allows you to update the notification later on.
-                notificationManager.notify(NOTIFICATION_ID, builder.build());
-                restaurant.setClaimed(true);
+            // Get the notification manager system service
+            NotificationManager notificationManager = (NotificationManager) v.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
                 Intent intent = new Intent(v.getContext(), DropOffListActivity.class);
                 intent.putExtra(RestaurantExtras.CLAIMED, 1);

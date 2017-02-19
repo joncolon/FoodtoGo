@@ -17,37 +17,43 @@
         android:id="@+id/name_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_name"/>
+        android:hint="@string/enter_name"
+        android:textColorHint="@color/colorHint"/>
 
     <EditText
         android:id="@+id/username_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_username"/>
+        android:hint="@string/enter_username"
+        android:textColorHint="@color/colorHint"/>
 
     <EditText
         android:id="@+id/email_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_email"/>
+        android:hint="@string/enter_email"
+        android:textColorHint="@color/colorHint"/>
 
     <EditText
         android:id="@+id/confirm_email_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/confirm_email"/>
+        android:hint="@string/confirm_email"
+        android:textColorHint="@color/colorHint"/>
 
     <EditText
         android:id="@+id/password_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_password"/>
+        android:hint="@string/enter_password"
+        android:textColorHint="@color/colorHint"/>
 
     <EditText
         android:id="@+id/confirm_password_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/confirm_password"/>
+        android:hint="@string/confirm_password"
+        android:textColorHint="@color/colorHint"/>
     <Button
         android:id="@+id/sign_up_button"
         android:layout_width="wrap_content"

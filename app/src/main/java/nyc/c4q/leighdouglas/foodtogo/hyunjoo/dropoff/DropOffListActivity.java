@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import nyc.c4q.leighdouglas.foodtogo.leigh.ExitAppDialog;
 import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantExtras;
 import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpSource;
+import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
 
 /**
  * Created by Hyun on 2/18/17.

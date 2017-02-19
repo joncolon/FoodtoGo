@@ -89,20 +89,15 @@
             android:textColor="@color/colorFont" />
 
         <ImageButton
-            android:id="@+id/yelp_directions"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/yelp_claim"
-            android:src="@android:drawable/ic_menu_directions" />
-
-        <ImageButton
-            android:id="@+id/yelp_claim"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/directions"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentEnd="true"
-            android:src="@android:drawable/checkbox_off_background" />
+            android:layout_alignParentBottom="true"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/directions_blue"
+            android:layout_marginBottom="3dp"/>
 
     </RelativeLayout>
 
