@@ -2,7 +2,6 @@ package nyc.c4q.leighdouglas.foodtogo.hakeem;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,9 +10,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,19 +33,16 @@ public class LoginActivityFirebase extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initViews();
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    //Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    //Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // User is signed in
+                //Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+            } else {
+                // User is signed out
+                //Log.d(TAG, "onAuthStateChanged:signed_out");
             }
+            // ...
         };
     }
 
@@ -73,16 +66,7 @@ public class LoginActivityFirebase extends AppCompatActivity {
         runnerRadioBtn = (RadioButton) findViewById(R.id.runnerRadio_Btn);
         restaurantRadioBtn = (RadioButton) findViewById(R.id.restaurantRadio_Btn);
         nextBtn = (Button) findViewById(R.id.next_Btn);
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                signin(emailET.getText().toString(), passwordET.getText().toString());
-
-            }
-
-        });
+        nextBtn.setOnClickListener(v -> signin(emailET.getText().toString(), passwordET.getText().toString()));
     }
 
     public void onRadioButtonClicked(View view) {
@@ -105,23 +89,20 @@ public class LoginActivityFirebase extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "enter username and password", Toast.LENGTH_SHORT);
         } else {
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                    .addOnCompleteListener(this, task -> {
 
-                            if (!task.isSuccessful()) {
-                                // Log.w(TAG, "signInWithEmail", task.getException());
-                                Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                            } else {
-                                if (picked == 1) {
-                                    Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
-                                    Intent runner = new Intent(getApplicationContext(), RestaurantListActivity.class);
-                                    startActivity(runner);
-                                } else if (picked == 2) {
-                                    Intent restaurant = new Intent(getApplicationContext(), RestaurantProfileActivity.class);
-                                    startActivity(restaurant);
-                                }
+                        if (!task.isSuccessful()) {
+                            // Log.w(TAG, "signInWithEmail", task.getException());
+                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (picked == 1) {
+                                Toast.makeText(getApplicationContext(), "RUNNER", Toast.LENGTH_LONG).show();
+                                Intent runner = new Intent(getApplicationContext(), RestaurantListActivity.class);
+                                startActivity(runner);
+                            } else if (picked == 2) {
+                                Intent restaurant = new Intent(getApplicationContext(), RestaurantProfileActivity.class);
+                                startActivity(restaurant);
                             }
                         }
                     });

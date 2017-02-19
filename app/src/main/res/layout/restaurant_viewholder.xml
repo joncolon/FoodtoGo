@@ -70,20 +70,20 @@
             />
 
         <ImageButton
-            android:id="@+id/directions"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_toLeftOf="@+id/claim"
-            android:layout_alignParentBottom="true"
-            android:src="@android:drawable/ic_menu_directions"/>
-
-        <ImageButton
             android:id="@+id/claim"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:src="@android:drawable/checkbox_off_background"/>
+
+        <ImageButton
+            android:id="@+id/directions"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toStartOf="@id/claim"
+            android:layout_alignParentBottom="true"
+            android:src="@android:drawable/ic_menu_directions"/>
 
     </RelativeLayout>
 
