@@ -11,6 +11,7 @@ public class Runner {
     private String phoneNumber;
     private String emailAddress;
     private String restaurantClaimed;
+    private String hasClaimedRestaurant;
 
     public String getName() {
         return name;
@@ -42,5 +43,13 @@ public class Runner {
 
     public void setRestaurantClaimed(String restaurantClaimed) {
         this.restaurantClaimed = restaurantClaimed;
+    }
+
+    public String getHasClaimedRestaurant() {
+        return hasClaimedRestaurant;
+    }
+
+    public void setHasClaimedRestaurant(String hasClaimedRestaurant) {
+        this.hasClaimedRestaurant = hasClaimedRestaurant;
     }
 }
