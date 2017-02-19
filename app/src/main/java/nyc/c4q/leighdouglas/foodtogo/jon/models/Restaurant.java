@@ -52,7 +52,7 @@ public class Restaurant {
         this.pickupTime = pickupTime;
     }
 
-    public boolean isClaimed() {
+    public boolean getisClaimed() {
         return isClaimed;
     }
 
