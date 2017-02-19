@@ -49,15 +49,16 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
 
         claimIB.setOnClickListener(v -> {
 
-            int NOTIFICATION_ID = 555;
+            int NOTIFICATION_ID = 234;
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(claimIB.getContext())
                     .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
-                    .setContentTitle("New Notification")
+                    .setContentTitle("Success!")
                     .setContentText("A user has claimed food!");
 
-            // Get the notification manager system service
             NotificationManager notificationManager = (NotificationManager) v.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(NOTIFICATION_ID, builder.build());
 
                 Intent intent = new Intent(v.getContext(), DropOffListActivity.class);
                 intent.putExtra(RestaurantExtras.CLAIMED, 1);
