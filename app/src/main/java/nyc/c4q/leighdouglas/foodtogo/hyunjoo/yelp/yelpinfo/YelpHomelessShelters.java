@@ -28,4 +28,5 @@ public class YelpHomelessShelters implements Serializable {
     public YelpLocation getLocation() {
         return location;
     }
+
 }

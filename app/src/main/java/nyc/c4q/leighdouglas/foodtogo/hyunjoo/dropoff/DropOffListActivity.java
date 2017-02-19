@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import nyc.c4q.leighdouglas.foodtogo.R;
-import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.YelpSource;
+import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpSource;
 
 /**
  * Created by Hyun on 2/18/17.
@@ -22,8 +22,9 @@ public class DropOffListActivity extends AppCompatActivity {
         setContentView(R.layout.restaurant_list);
 
         mDropOffRecycler = (RecyclerView) findViewById(R.id.restaurant_recyclerview);
-        mDropOffRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));;
+        mDropOffRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         YelpSource.getHomelessList(mDropOffRecycler);
     }
+
 
 }

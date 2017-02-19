@@ -6,6 +6,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 import nyc.c4q.leighdouglas.foodtogo.R;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpHomelessShelters;
 
@@ -39,10 +41,10 @@ public class YelpVH extends RecyclerView.ViewHolder {
 
     public void setYelpData(YelpHomelessShelters yelpHomelessShelters) {
         yelp_homelessTV.setText(yelpHomelessShelters.getName());
-        yelp_address1.setText(yelpHomelessShelters.getLocation().getAddress());
+        yelp_address1.setText(Arrays.toString(yelpHomelessShelters.getLocation().getAddress()));
         yelpCity.setText(yelpHomelessShelters.getLocation().getCity());
         yelpState.setText(yelpHomelessShelters.getLocation().getState());
-        yelpZipCode.setText(yelpHomelessShelters.getLocation().getZipCode());
+        yelpZipCode.setText(yelpHomelessShelters.getLocation().getZipcode());
         yelp_phoneNumber.setText(yelpHomelessShelters.getPhoneNumber());
     }
 }

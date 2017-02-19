@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.leighdouglas.foodtogo.R;
@@ -16,12 +17,13 @@ import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpHomelessShelters;
 
 public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
 
-    private List<YelpHomelessShelters> yelpInfoList;
+    private List<YelpHomelessShelters> yelpInfoList = new ArrayList<>();
     private LayoutInflater layoutinflater;
     private View mView;
 
     public YelpAdapter(List<YelpHomelessShelters> yelpHomelessList) {
         yelpInfoList = yelpHomelessList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,4 +41,5 @@ public class YelpAdapter extends RecyclerView.Adapter<YelpVH> {
     public int getItemCount() {
         return yelpInfoList.size();
     }
+
 }
