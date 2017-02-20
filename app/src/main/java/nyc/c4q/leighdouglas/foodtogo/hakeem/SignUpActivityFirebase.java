@@ -27,19 +27,21 @@ public class SignUpActivityFirebase extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListenerSUA;
     private final String TAG = "FireBase";
     EditText userName;
-    EditText name;
+    EditText nameSignup;
     EditText password;
     EditText passwordConfirm;
     EditText emailSignup;
     EditText emailConfirm;
     Button signUpButton;
-    private Firebase myFirebaseRef;
+    //private FirebaseDatabase myFirebaseDatabase ;
+    //DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
-        myFirebaseRef = new Firebase("https://foodtogo-e8afc.firebaseio.com/");
+        //myFirebaseDatabase = FirebaseDatabase.getInstance();
+        //databaseReference = myFirebaseDatabase.getReference("userInfo");
 
         mAuthListenerSUA = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -55,7 +57,7 @@ public class SignUpActivityFirebase extends AppCompatActivity {
             }
         };
         userName = (EditText) findViewById(R.id.username_signup);
-        name = (EditText) findViewById(R.id.name_signup);
+        nameSignup = (EditText) findViewById(R.id.name_signup);
         password = (EditText) findViewById(R.id.password_signup);
         passwordConfirm = (EditText) findViewById(R.id.confirm_password_signup);
         emailSignup = (EditText) findViewById(R.id.email_signup);
@@ -67,16 +69,18 @@ public class SignUpActivityFirebase extends AppCompatActivity {
                 if (isFormComplete()) {
                     createAccount(emailSignup.getText().toString(), password.getText().toString());
                 } else {
-                    Toast.makeText(getApplicationContext(),"enter usermame password and email",Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "enter usermame password and email", Toast.LENGTH_SHORT);
                 }
             }
         });
     }
+
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListenerSUA);
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -84,6 +88,7 @@ public class SignUpActivityFirebase extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListenerSUA);
         }
     }
+
     private void createAccount(String email, String password) {
         if ((email + "").equals("") || (password + "").equals("")) {
             Toast.makeText(getApplicationContext(), "enter username and password", Toast.LENGTH_SHORT);
@@ -95,22 +100,13 @@ public class SignUpActivityFirebase extends AppCompatActivity {
                             // Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                             if (!task.isSuccessful()) {
 
-                                Log.d(TAG, "onComplete: " +task.getException().getMessage());
+                                Log.d(TAG, "onComplete: " + task.getException().getMessage());
                                 Toast.makeText(getApplicationContext(), "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                             }else {
-//                                myFirebaseRef.authWithPassword(email, password, new Firebase.AuthResultHandler() {
-//                                    @Override
-//                                    public void onAuthenticated(AuthData authData) {
-//                                        System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-//                                        //business name address phone# isrunner
-//                                    }
-//                                    @Override
-//                                    public void onAuthenticationError(FirebaseError firebaseError) {
-//                                        // there was an error
-//                                    }});
-                                User user = new User(userName.getText().toString(),emailSignup.getText().toString());
-                                myFirebaseRef.child("users").child(mAuth.getCurrentUser().getProviderId()).setValue(user);
+                            } else {
+//
+                                User user = new User(userName.getText().toString(), emailSignup.getText().toString());
+                                //databaseReference.child("userInfo").child(mAuth.getCurrentUser().getProviderId()).setValue(user);
                                 Intent intent = new Intent(getApplicationContext(), LoginActivityFirebase.class);
                                 startActivity(intent);
                             }
@@ -121,7 +117,7 @@ public class SignUpActivityFirebase extends AppCompatActivity {
 
     private boolean isFormComplete() {
         boolean bool = !(userName.getText().toString() + "").equals("") &&
-                !(name.getText().toString() + "").equals("") &&
+                !(nameSignup.getText().toString() + "").equals("") &&
                 !(emailConfirm.getText().toString() + "").equals("") &&
                 !(emailSignup.getText().toString() + "").equals("") &&
                 !(password.getText().toString() + "").equals("") &&

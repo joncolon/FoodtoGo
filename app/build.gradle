@@ -17,7 +17,11 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
+        packagingOptions {
+            exclude 'META-INF/LICENSE'
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -42,13 +46,14 @@ dependencies {
     compile 'se.akerfeldt:okhttp-signpost:1.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    apply plugin: 'com.google.gms.google-services'
-    compile 'com.firebase:firebase-client-android:2.5.2+'
+
 }
 allprojects {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
     }
 }
+
+apply plugin: 'com.google.gms.google-services'
 
 

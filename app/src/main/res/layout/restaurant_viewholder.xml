@@ -71,19 +71,25 @@
 
         <ImageButton
             android:id="@+id/claim"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:src="@android:drawable/checkbox_off_background"/>
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/checkbox_outline_blue"/>
 
         <ImageButton
             android:id="@+id/directions"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_toStartOf="@id/claim"
             android:layout_alignParentBottom="true"
-            android:src="@android:drawable/ic_menu_directions"/>
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/directions_blue"
+            android:layout_marginBottom="3dp"/>
 
     </RelativeLayout>
 

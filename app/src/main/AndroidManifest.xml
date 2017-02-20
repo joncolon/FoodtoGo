@@ -11,18 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".LoginActivity">
-        </activity>
-        <activity android:name=".hakeem.SignUpActivityFirebase"/>
-        <activity android:name=".leigh.RestaurantListActivity"/>
-        <activity android:name=".leigh.RestaurantProfileActivity"/>
-        <activity android:name=".hyunjoo.RunnerActivity"/>
-        <activity android:name=".hyunjoo.dropoff.DropOffListActivity"/>
-        <activity android:name=".hakeem.LoginActivityFirebase">
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".hakeem.SignUpActivityFirebase">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".leigh.RestaurantListActivity" />
+        <activity android:name=".leigh.RestaurantProfileActivity" />
+        <activity android:name=".hyunjoo.RunnerActivity" />
+        <activity android:name=".hyunjoo.dropoff.DropOffListActivity" />
+        <activity android:name=".hakeem.LoginActivityFirebase">
+
         </activity>
 
     </application>

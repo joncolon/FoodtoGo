@@ -3,7 +3,6 @@ package nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -20,13 +19,11 @@ public class YelpVH extends RecyclerView.ViewHolder {
     private View mRoot;
     private TextView yelp_homelessTV,yelp_address1,yelpCity,yelpState,yelpZipCode,yelp_phoneNumber,yelpAvailability;
     // TODO: 2/18/17 for later
-    private ImageView yelpClaimIcon;
-    private ImageButton yelpDirection, yelpClaim;
+    private ImageButton yelpDirection;
 
     public YelpVH(View mView) {
         super(mView);
         mRoot = mView;
-        yelpClaimIcon = (ImageView) mRoot.findViewById(R.id.yelp_claim_level_icon);
         yelp_homelessTV = (TextView) mRoot.findViewById(R.id.yelp_homeless_TV);
         yelp_address1 = (TextView) mRoot.findViewById(R.id.yelp_address_line1);
         yelpCity = (TextView) mRoot.findViewById(R.id.yelp_city);
@@ -35,8 +32,8 @@ public class YelpVH extends RecyclerView.ViewHolder {
         yelp_phoneNumber = (TextView) mRoot.findViewById(R.id.yelp_phone_number);
         yelpAvailability = (TextView) mRoot.findViewById(R.id.yelp_availability);
         yelp_homelessTV = (TextView) mRoot.findViewById(R.id.yelp_homeless_TV);
-        yelpDirection = (ImageButton) mRoot.findViewById(R.id.yelp_directions);
-        yelpClaim = (ImageButton) mRoot.findViewById(R.id.yelp_claim);
+        yelpDirection = (ImageButton) mRoot.findViewById(R.id.directions);
+
     }
 
     public void setYelpData(YelpHomelessShelters yelpHomelessShelters) {

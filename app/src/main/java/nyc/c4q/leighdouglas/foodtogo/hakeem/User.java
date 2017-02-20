@@ -14,7 +14,7 @@ public class User {
     String phoneNumber;
     boolean isrunner;
 
-    //business name address phone# isrunner
+    //business nameSignup address phone# isrunner
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
