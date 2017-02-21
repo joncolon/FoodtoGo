@@ -106,7 +106,7 @@ public class RestaurantProfileActivity extends AppCompatActivity {
                     new NotificationCompat.Builder(addRestaurantButton.getContext()).setContentIntent(pIntent)
                             .setSmallIcon(R.drawable.leaflogo_small)
                             .setContentTitle("Free food at " + businessName.getText())
-                            .setContentInfo("you better say hello");
+                            .setContentInfo("Enjoy our second helping!");
             final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(NOTIFICATION_ID, nCBuilder.build());
 
