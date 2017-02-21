@@ -11,14 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +23,9 @@ import java.util.List;
 import nyc.c4q.leighdouglas.foodtogo.R;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.YelpAdapter;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpHomelessShelters;
-import nyc.c4q.leighdouglas.foodtogo.jon.models.Restaurant;
+import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpSource;
 import nyc.c4q.leighdouglas.foodtogo.leigh.ExitAppDialog;
 import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantExtras;
-import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
-import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpSource;
 import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
 
 /**
