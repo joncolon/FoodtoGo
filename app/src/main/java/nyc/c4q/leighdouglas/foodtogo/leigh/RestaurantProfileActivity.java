@@ -11,13 +11,19 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+import com.skyfishjy.library.RippleBackground;
+
 import nyc.c4q.leighdouglas.foodtogo.R;
+import nyc.c4q.leighdouglas.foodtogo.jon.animations.Animations;
 import nyc.c4q.leighdouglas.foodtogo.jon.models.Restaurant;
 import nyc.c4q.leighdouglas.foodtogo.jon.sqlite.RestaurantDatabaseHelper;
 
@@ -41,6 +47,7 @@ public class RestaurantProfileActivity extends AppCompatActivity {
     private EditText additionInstructions;
     private NotificationCompat.Builder nCBuilder;
     private PendingIntent pIntent;
+    private CardView businessInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,18 +55,22 @@ public class RestaurantProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurantprofile);
         initViews();
         initUpSubmitButton();
-
         addRestaurantButton.setVisibility(View.GONE);
+        Animations anim = new Animations(getApplicationContext());
+        anim.slideInFromTop(businessInfo);
     }
 
     private void initViews() {
+        businessInfo = (CardView) findViewById(R.id.business_info_card);
         businessName = (EditText) findViewById(R.id.business_name);
         addressLine1 = (EditText) findViewById(R.id.address_line1);
         addressLine2 = (EditText) findViewById(R.id.address_line2);
         phoneNumber = (EditText) findViewById(R.id.business_phone);
         contactName = (EditText) findViewById(R.id.contact_name);
         pickupTime = (EditText) findViewById(R.id.pick_up_time);
+        addRestaurantButton = (FloatingActionButton) findViewById(R.id.fab_add_restaurant);
         additionInstructions = (EditText) findViewById(R.id.additional_instructions);
+
         additionInstructions.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,21 +85,26 @@ public class RestaurantProfileActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 addRestaurantButton.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.BounceInUp)
+                        .duration(700)
+                        .playOn(findViewById(R.id.fab_add_restaurant));
             }
         });
-        addRestaurantButton = (FloatingActionButton) findViewById(R.id.fab_add_restaurant);
 
         requestID = System.currentTimeMillis();
     }
 
+
+
     private void initUpSubmitButton() {
         addRestaurantButton.setOnClickListener(view -> {
 
+            final RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.content);
             final Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
             pIntent = PendingIntent.getActivity(getApplicationContext(), (int) requestID, intent, PendingIntent.FLAG_CANCEL_CURRENT);
             nCBuilder = (NotificationCompat.Builder)
                     new NotificationCompat.Builder(addRestaurantButton.getContext()).setContentIntent(pIntent)
-                            .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                            .setSmallIcon(R.drawable.leaflogo_small)
                             .setContentTitle("Free food at " + businessName.getText())
                             .setContentInfo("you better say hello");
             final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -98,6 +114,7 @@ public class RestaurantProfileActivity extends AppCompatActivity {
             saveRestaurant(restaurant);
 
             Toast.makeText(RestaurantProfileActivity.this, "Post successful!", Toast.LENGTH_SHORT).show();
+            rippleBackground.startRippleAnimation();
         });
     }
 

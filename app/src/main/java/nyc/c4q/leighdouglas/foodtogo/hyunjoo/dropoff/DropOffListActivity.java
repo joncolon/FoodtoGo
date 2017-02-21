@@ -24,6 +24,7 @@ import nyc.c4q.leighdouglas.foodtogo.R;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.YelpAdapter;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpHomelessShelters;
 import nyc.c4q.leighdouglas.foodtogo.hyunjoo.yelp.yelpinfo.YelpSource;
+import nyc.c4q.leighdouglas.foodtogo.jon.animations.Animations;
 import nyc.c4q.leighdouglas.foodtogo.leigh.ExitAppDialog;
 import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantExtras;
 import nyc.c4q.leighdouglas.foodtogo.leigh.RestaurantListActivity;
@@ -44,45 +45,53 @@ public class DropOffListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dropoff);
 
         initViews();
+        showRecyclerView();
+        claimCheckerDisplay();
 
+        optOutBttn = (Button) findViewById(R.id.opt_out);
+        optOutBttn.setOnClickListener(view -> {
+            int NOTIFICATION_ID = 123;
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
+                    .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                    .setContentTitle("On no!")
+                    .setContentText("The user is no longer able to pick-up");
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(NOTIFICATION_ID, builder.build());
+
+            view.getContext().startActivity(new Intent(getApplicationContext(), RestaurantListActivity.class));
+            finish();
+        });
+
+    }
+
+    synchronized private void showRecyclerView() {
         mDropOffRecycler = (RecyclerView) findViewById(R.id.drop_off_recyclerview);
         mDropOffRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mDropOffRecycler.setAdapter(new YelpAdapter(mList));
+        getData();
+    }
+
+    synchronized private void getData() {
         YelpSource.getHomelessList(mDropOffRecycler);
-
-
-        optOutBttn = (Button) findViewById(R.id.opt_out);
-        optOutBttn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int NOTIFICATION_ID = 123;
-
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
-                        .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
-                        .setContentTitle("On no!")
-                        .setContentText("The user is no longer able to pick-up");
-
-                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-                notificationManager.notify(NOTIFICATION_ID, builder.build());
-
-                view.getContext().startActivity(new Intent(getApplicationContext(), RestaurantListActivity.class));
-            }
-        });
-
     }
 
     private void initViews() {
         optOutBttn = (Button) findViewById(R.id.opt_out);
         claimedRestaurant = (CardView) findViewById(R.id.claimed_restaurant);
         claimedRestaurant.setVisibility(View.GONE);
+    }
 
+    synchronized private void claimCheckerDisplay() {
         if (getIntent().getIntExtra(RestaurantExtras.CLAIMED, 0) == 1) {
             userClaimed = true;
         }
 
         if (userClaimed) {
-            claimedRestaurant.setVisibility(View.VISIBLE);
+
+            showClaimedRestaurant();
             TextView name = (TextView) findViewById(R.id.nameOfBusiness);
             TextView address1 = (TextView) findViewById(R.id.address1);
             TextView address2 = (TextView) findViewById(R.id.address2);
@@ -99,21 +108,23 @@ public class DropOffListActivity extends AppCompatActivity {
             address2.setText(getIntent().getStringExtra(RestaurantExtras.ADDRESS2));
             phone.setText(getIntent().getStringExtra(RestaurantExtras.PHONE));
             time.setText(getIntent().getStringExtra(RestaurantExtras.TIME));
-            directions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("view holder", "onClick: " + "should start intent");
 
-                    //Activity parentActivity = ((Activity) view.getContext());
+            directions.setOnClickListener(view -> {
+                Log.d("view holder", "onClick: " + "should start intent");
 
-                    String uri = "http://maps.google.com/maps?daddr=" + line1;
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse(uri));
-                    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                    view.getContext().startActivity(intent);
-                }
+                String uri = "http://maps.google.com/maps?daddr=" + line1;
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(uri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                view.getContext().startActivity(intent);
             });
         }
+    }
+
+    private void showClaimedRestaurant() {
+        Animations anim = new Animations(getApplicationContext());
+        claimedRestaurant.setVisibility(View.VISIBLE);
+        anim.slideInFromBottom(claimedRestaurant);
     }
 
     @Override

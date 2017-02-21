@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Food to Go</string>
+    <string name="app_name">Second Helping</string>
     <string name="prompt_email">E-mail address</string>
     <string name="prompt_password">Password</string>
     <string name="business_name">Business Name</string>
