@@ -15,6 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import nyc.c4q.leighdouglas.foodtogo.R;
 
@@ -33,15 +38,16 @@ public class SignUpActivityFirebase extends AppCompatActivity {
     EditText emailSignup;
     EditText emailConfirm;
     Button signUpButton;
-    //private FirebaseDatabase myFirebaseDatabase ;
-    //DatabaseReference databaseReference;
+    private FirebaseDatabase myFirebaseDatabase ;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
-        //myFirebaseDatabase = FirebaseDatabase.getInstance();
-        //databaseReference = myFirebaseDatabase.getReference("userInfo");
+        myFirebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = myFirebaseDatabase.getReference("userInfo");
+        databaseReference.setValue("users");
 
         mAuthListenerSUA = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -56,6 +62,23 @@ public class SignUpActivityFirebase extends AppCompatActivity {
                 }// ...
             }
         };
+        //Read from the database
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
         userName = (EditText) findViewById(R.id.username_signup);
         nameSignup = (EditText) findViewById(R.id.name_signup);
         password = (EditText) findViewById(R.id.password_signup);
@@ -97,7 +120,7 @@ public class SignUpActivityFirebase extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            // Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+                            Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                             if (!task.isSuccessful()) {
 
                                 Log.d(TAG, "onComplete: " + task.getException().getMessage());
@@ -106,7 +129,7 @@ public class SignUpActivityFirebase extends AppCompatActivity {
                             } else {
 //
                                 User user = new User(userName.getText().toString(), emailSignup.getText().toString());
-                                //databaseReference.child("userInfo").child(mAuth.getCurrentUser().getProviderId()).setValue(user);
+                                databaseReference.child("userInfo").child(mAuth.getCurrentUser().getProviderId()).setValue(user);
                                 Intent intent = new Intent(getApplicationContext(), LoginActivityFirebase.class);
                                 startActivity(intent);
                             }
@@ -123,6 +146,10 @@ public class SignUpActivityFirebase extends AppCompatActivity {
                 !(password.getText().toString() + "").equals("") &&
                 !(passwordConfirm.getText().toString() + "").equals("");
         return bool;
+    }
+    public void launchLogInActivity(View v){
+        Intent intent = new Intent(getApplicationContext(), LoginActivityFirebase.class);
+        startActivity(intent);
     }
 }
 
