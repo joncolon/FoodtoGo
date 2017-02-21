@@ -53,7 +53,7 @@ public class DropOffListActivity extends AppCompatActivity {
             int NOTIFICATION_ID = 123;
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
-                    .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                    .setSmallIcon(R.drawable.leaflogo_small)
                     .setContentTitle("On no!")
                     .setContentText("The user is no longer able to pick-up");
 

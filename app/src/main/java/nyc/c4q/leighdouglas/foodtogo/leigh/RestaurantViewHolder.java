@@ -52,7 +52,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
             int NOTIFICATION_ID = 234;
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(claimIB.getContext())
-                    .setSmallIcon(R.drawable.ic_shopping_cart_black_24dp)
+                    .setSmallIcon(R.drawable.leaflogo_small)
                     .setContentTitle("Success!")
                     .setContentText("A user has claimed food!");
 
