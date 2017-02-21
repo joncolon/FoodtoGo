@@ -65,7 +65,7 @@ public class LoginActivityFirebase extends AppCompatActivity {
         passwordET = (EditText) findViewById(R.id.password_ET);
         runnerRadioBtn = (RadioButton) findViewById(R.id.runnerRadio_Btn);
         restaurantRadioBtn = (RadioButton) findViewById(R.id.restaurantRadio_Btn);
-        nextBtn = (Button) findViewById(R.id.next_Btn);
+        nextBtn = (Button) findViewById(R.id.submit_btn);
         nextBtn.setOnClickListener(v -> signin(emailET.getText().toString(), passwordET.getText().toString()));
     }
 

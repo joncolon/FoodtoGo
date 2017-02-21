@@ -36,6 +36,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
         pickupTV = (TextView) itemView.findViewById(R.id.availability);
         claimIB = (ImageButton) itemView.findViewById(R.id.claim);
         mapIB = (ImageButton) itemView.findViewById(R.id.directions);
+
     }
 
     public void bind(final Restaurant restaurant) {
